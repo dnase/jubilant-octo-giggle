@@ -32,8 +32,8 @@ variable "consul_encrypt" {
   description = "Encryption key to place in the consul configuration."
 }
 
-variable "vault_id" {
-  description = "The id of the Azure Key Vault"
+variable "vault_name" {
+  description = "The name of the Azure Key Vault"
 }
 
 variable "domain" {

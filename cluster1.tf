@@ -16,7 +16,7 @@ module "consul_cluster1" {
   os_image_id               = "${var.os_image_id}"
   tags                      = "${local.common_tags}"
 
-  vault_id       = "${module.core.keyvault_id}"
+  vault_name     = "${module.core.keyvault_name}"
   domain         = "${var.domain}"
   count          = "${var.consul_count}"
   consul_encrypt = "${var.consul_encrypt}"

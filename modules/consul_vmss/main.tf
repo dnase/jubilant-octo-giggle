@@ -35,9 +35,12 @@ resource "azurerm_virtual_machine_scale_set" "module" {
     primary = true
 
     ip_configuration {
-      primary   = true
-      name      = "${local.module_name}ipConfig"
-      subnet_id = "${var.subnet_id}"
+      primary                                = true
+      name                                   = "${local.module_name}ipConfig"
+      subnet_id                              = "${var.subnet_id}"
+      load_balancer_backend_address_pool_ids = ["${azurerm_lb_backend_address_pool.consul_bepool.id}"]
+
+      // load_balancer_inbound_nat_rules_ids    = ["${element(azurerm_lb_nat_pool.consul_lbnatpool.*.id, count.index)}"]
     }
   }
 
@@ -63,7 +66,5 @@ data "azurerm_client_config" "primary" {}
 resource "azurerm_role_assignment" "module" {
   role_definition_name = "Reader"
   principal_id         = "${azurerm_virtual_machine_scale_set.module.identity.0.principal_id}"
-
-  # 267a7b53-0088-4271-9680-5d687368e8ed
-  scope = "${data.azurerm_subscription.primary.id}/resourceGroups/${var.resource_group_name}"
+  scope                = "${data.azurerm_subscription.primary.id}/resourceGroups/${var.resource_group_name}"
 }

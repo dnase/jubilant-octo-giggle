@@ -40,29 +40,15 @@
   ufw:
     state: disabled
 
+# TLS
+- name: Create consul TLS directory
+  file:
+    path: "{{consul_tls_dir}}"
+    state: directory
+    mode: 0755
+- name: Create vault TLS directory
+  file:
+    path: "{{vault_tls_dir}}"
+    state: directory
+    mode: 0755
 
-
-
-# # TLS
-# - name: Create key directory
-#   file:
-#     path: "{{ssl_key_dir}}"
-#     state: directory
-#     mode: 0755
-# - name: Create cert directory
-#   file:
-#     path: "{{ssl_cert_dir}}"
-#     state: directory
-
-# - name: Copy ssl server.key
-#   copy:
-#     src: secrets/server.key
-#     dest: "{{ssl_key_dir}}/server.key"
-
-# - name: Copy ssl server.crt
-#   copy:
-#     src: secrets/server.crt
-#     dest: "{{ssl_cert_dir}}/server.crt"
-#     mode: 0644
-# - name: Update cert index
-#   shell: /usr/sbin/update-ca-certificates

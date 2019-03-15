@@ -34,6 +34,19 @@
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "inline": [
+        "echo 'Base Image Build Info' | sudo tee --append /usr/packer-image.txt",
+        "echo '  source_image          Canonical:UbuntuServer:16.04-LTS:latest' | sudo tee --append /usr/packer-image.txt",
+        "echo '  azure_resource_group: {{ user `azure_resource_group` }}' | sudo tee --append /usr/packer-image.txt",
+        "echo '  azure_location:       {{ user `azure_location` }}' | sudo tee --append /usr/packer-image.txt",
+        "echo '  image_name:           {{ user `image_name` }}' | sudo tee --append /usr/packer-image.txt",
+        "echo '  image_version:        {{ user `image_version` }}' | sudo tee --append /usr/packer-image.txt",
+        "echo '  build_date:           {{ isotime }}' | sudo tee --append /usr/packer-image.txt",
+        "sudo chmod 0444 /usr/packer-image.txt"
+      ]
+    },
+    {
       "type": "ansible",
       "playbook_file": "./configuration/install.yml"
     },

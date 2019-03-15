@@ -20,7 +20,7 @@ addresses = {
 
 ports = {
   dns      = 8600
-  # http     = -1
+  http     = -1
   https    = 8501
   serf_lan = 8301
   serf_wan = 8302
@@ -49,21 +49,19 @@ syslog_facility            = "local0"
 
 ## Encryption and TLS
 encrypt                = "${consul_encrypt}"
-# ca_file                = "/etc/consul.d/tls/consul-agent-ca.pem"
-# cert_file              = "/etc/consul.d/tls/dc1-server-consul-0.pem"
-# key_file               = "/etc/consul.d/tls/dc1-server-consul-0-key.pem"
-# verify_incoming        = true
-# verify_outgoing        = true
-# verify_incoming_https  = false
-# verify_server_hostname = true
+ca_file                = "/etc/consul.d/tls/consul-agent-ca.pem"
+cert_file              = "/etc/consul.d/tls/dc1-client-consul-0.pem"
+key_file               = "/etc/consul.d/tls/dc1-client-consul-0-key.pem"
+verify_incoming        = true
+verify_outgoing        = true
+verify_incoming_https  = true
+verify_server_hostname = true
 
 ## LAN Join
 retry_interval = "30s"
 retry_max      = 0
 ### cloud auto-join
 retry_join     = ["provider=azure vm_scale_set=${vm_scale_set} resource_group=${resource_group} tenant_id=${tenant_id} subscription_id=${subscription_id} client_id=${client_id} secret_access_key=${secret_access_key}"]
-### known addresses
-# retry_join = ["${consul_node}"]
 
 ## Server Settings
 server           = false
