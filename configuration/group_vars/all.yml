@@ -11,6 +11,8 @@ consul_server_config_dir: "{{consul_config_dir}}/server"
 consul_client_config_dir: "{{consul_config_dir}}/client"
 consul_data_dir: "/opt/consul"
 vault_config_dir: "/etc/vault.d"
+consul_tls_dir: "{{consul_config_dir}}/tls"
+vault_tls_dir: "{{vault_config_dir}}/tls"
 
-local_binaries: true
+local_binaries: false
 local_enterprise_binary_dir: "/usr/local/hashi-enterprise"

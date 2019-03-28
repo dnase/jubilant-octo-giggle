@@ -9,20 +9,20 @@
 bind_addr          = "$${NODE_IP}"
 advertise_addr     = "$${NODE_IP}"
 advertise_addr_wan = "$${NODE_IP}"
-# client_addr        = "127.0.0.1"
-client_addr        = "$${NODE_IP}"
+client_addr        = "127.0.0.1"
+#client_addr        = "$${NODE_IP}"
 
 addresses = {
   dns   = "127.0.0.1"
-  # http  = "127.0.0.1"
-  http = "$${NODE_IP}"
+  http  = "127.0.0.1"
+  # http = "$${NODE_IP}"
   https = "0.0.0.0"
   grpc  = "127.0.0.1"
 }
 
 ports = {
   dns      = 8600
-  # http     = -1
+  http     = -1
   https    = 8501
   serf_lan = 8301
   serf_wan = 8302
@@ -51,13 +51,13 @@ syslog_facility            = "local0"
 
 ## Encryption and TLS
 encrypt                = "${consul_encrypt}"
-# ca_file                = "/etc/consul.d/tls/consul-agent-ca.pem"
-# cert_file              = "/etc/consul.d/tls/dc1-server-consul-0.pem"
-# key_file               = "/etc/consul.d/tls/dc1-server-consul-0-key.pem"
-# verify_incoming        = true
-# verify_outgoing        = true
-# verify_incoming_https  = false
-# verify_server_hostname = true
+ca_file                = "/etc/consul.d/tls/consul-agent-ca.pem"
+cert_file              = "/etc/consul.d/tls/dc1-server-consul-0.pem"
+key_file               = "/etc/consul.d/tls/dc1-server-consul-0-key.pem"
+verify_incoming        = true
+verify_outgoing        = true
+verify_incoming_https  = true
+verify_server_hostname = true
 
 ## LAN Join
 retry_interval = "30s"

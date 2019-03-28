@@ -1,0 +1,1 @@
+Generate a ca `consul tls ca create -domain=consul`

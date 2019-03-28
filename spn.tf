@@ -52,4 +52,8 @@ resource "azurerm_key_vault_access_policy" "autounseal" {
     "verify",
     "wrapKey",
   ]
+
+  secret_permissions = [
+    "get",
+  ]
 }
